@@ -9,16 +9,18 @@ function isArrayTwo(arr) {
 }
 
 function isArrayThree(arr) {
-  return {}.toString.call(arr) === '[object Array]'
+  return Object.prototype.toString.call(arr) === '[object Array]'
 }
 
-function range(a, b, step = 1) {
+function range(a, b, step) {
   var arr = [];
   // condition for one argument
-  if (typeof b == 'undefined') {
+  if (typeof b === 'undefined') {
     b = a;
     a = 0;
   }
+  // check for step. undefined > 0 = false
+  step = step > 0 ? step : 1;
   for (var i = a; i < b; i += step) {
     arr.push(i);
   }
@@ -27,7 +29,7 @@ function range(a, b, step = 1) {
 
 function compact(arr) {
   return arr.filter(function(element) {
-    return element ? true : false;
+    return element;
   });
 }
 
@@ -62,11 +64,12 @@ function unique(arr) {
 }
 
 function last(arr) {
-  return arr[(arr.length - 1)];
+  return arr[arr.length - 1];
 }
 
-function excludeLast(arr, count = 1) {
+function excludeLast(arr, count) {
   var res = [];
+  count = (typeof count !== 'undefined') ? count : 1;
   for (var i = 0; i < arr.length - count; i++) {
     res.push(arr[i]);
   }
