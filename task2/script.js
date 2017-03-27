@@ -12,49 +12,32 @@ function isArrayThree(arr) {
   return {}.toString.call(arr) === '[object Array]'
 }
 
-function range() {
+function range(a, b, step = 1) {
   var arr = [];
-  switch (arguments.length) {
-    case 1:
-      {
-        for (var i = 0; i < arguments[0]; i++) {
-          arr.push(i);
-        }
-      }
-      break;
-    case 2:
-      {
-        for (var i = arguments[0]; i < arguments[1]; i++) {
-          arr.push(i);
-        }
-      }
-      break;
-    case 3:
-      {
-        for (var i = arguments[0]; i < arguments[1]; i++) {
-          if (i % (arguments[2]) !== 0) {
-            arr.push(i)
-          }
-        }
-      }
-      break;
+  // condition for one argument
+  if (typeof b == 'undefined') {
+    b = a;
+    a = 0;
+  }
+  for (var i = a; i < b; i += step) {
+    arr.push(i);
   }
   return arr;
 }
 
 function compact(arr) {
-  return arr.filter(function(arr) {
-    return Boolean(arr).valueOf() === true;
+  return arr.filter(function(element) {
+    return element ? true : false;
   });
 }
 
 function compactCycle(arr) {
   var res = [];
-  arr.forEach(function(i) {
-    if (Boolean(i).valueOf() === true) {
-      res.push(i);
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i]) {
+      res.push(arr[i]);
     }
-  });
+  }
   return res;
 }
 
@@ -66,9 +49,9 @@ function sum(arr) {
 
 function sumCycle(arr) {
   var sum = 0;
-  arr.forEach(function(i) {
-    sum += i;
-  });
+  for (var i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
   return sum;
 }
 
@@ -83,8 +66,11 @@ function last(arr) {
 }
 
 function excludeLast(arr, count = 1) {
-  arr.length = arr.length - count;
-  return arr;
+  var res = [];
+  for (var i = 0; i < arr.length - count; i++) {
+    res.push(arr[i]);
+  }
+  return res;
 }
 
 console.log("--------- isArray ---------");
@@ -101,8 +87,8 @@ console.log(range(1, 5));
 console.log(range(1, 10, 2));
 
 console.log("\n--------- compact ---------");
-console.log(compact([false, 0, 1, {}]));
-console.log(compactCycle([false, 0, 1, {}]));
+console.log(compact([false, {}, 0, 1, [], null, "", undefined, NaN, Infinity]));
+console.log(compactCycle([false, {}, 0, 1, [], null, "", undefined, NaN, Infinity]));
 
 console.log("\n--------- sum ---------");
 console.log(sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
