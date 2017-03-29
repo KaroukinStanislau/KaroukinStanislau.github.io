@@ -13,18 +13,25 @@ function isArrayThree(arr) {
 }
 
 function range(a, b, step) {
-  var arr = [];
-  // condition for one argument
   if (typeof b === 'undefined') {
     b = a;
     a = 0;
   }
-  // check for step. undefined > 0 = false
-  step = step > 0 ? step : 1;
-  for (var i = a; i < b; i += step) {
-    arr.push(i);
+  if (typeof step === 'undefined') {
+    step = b - a > 0 ? 1 : -1;
   }
-  return arr;
+  var index = -1,
+    length = Math.ceil((b - a) / (step)),
+    res = [];
+  if (length < 0 || !isFinite(length)) {
+    return res;
+  }
+
+  while (length--) {
+    res[++index] = a;
+    a += step;
+  }
+  return res;
 }
 
 function compact(arr) {
@@ -70,6 +77,7 @@ function last(arr) {
 function excludeLast(arr, count) {
   var res = [];
   count = (typeof count !== 'undefined') ? count : 1;
+  count = count < 0 ? 0 : count;
   for (var i = 0; i < arr.length - count; i++) {
     res.push(arr[i]);
   }
@@ -87,7 +95,10 @@ console.log(isArrayThree({}));
 console.log("\n--------- range ---------");
 console.log(range(5));
 console.log(range(1, 5));
+console.log(range(5, -3));
 console.log(range(1, 10, 2));
+console.log(range(-1, 10, 2));
+console.log(range(-1, -10, -2));
 
 console.log("\n--------- compact ---------");
 console.log(compact([false, {}, 0, 1, [], null, "", undefined, NaN, Infinity]));
