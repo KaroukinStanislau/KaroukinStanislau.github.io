@@ -6,15 +6,10 @@ function ArtistInfo() {
 ArtistInfo.prototype = Object.create(Loader.prototype);
 ArtistInfo.prototype.constructor = ArtistInfo;
 
-ArtistInfo.prototype.getInfo = function(artistName) {
+ArtistInfo.prototype.getInfo = function(artistName, cb) {
   var queryObject = {
     method: this.method,
     artist: artistName
   };
-  this.doGet(queryObject, this._display);
-};
-
-ArtistInfo.prototype._display = function() {
-  console.log("Artist info");
-  console.log(JSON.parse(this.responseText));
+  this.doGet(queryObject, cb);
 }
