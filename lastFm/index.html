@@ -5,14 +5,47 @@
   <meta charset="utf-8">
   <title></title>
 </head>
+<link rel="stylesheet" href="main.css" charset="UTF-8" />
 
 <body>
+
+  <div class="wrapper">
+    <header class="header">
+      <div class="container">
+        <div class="title">
+          <a class="no-link" href="">Last.fm API</a>
+        </div>
+        <div class="search">
+          <input type="text" id="searchInput" placeholder="Search..." />
+          <input class="btn" type="button" id="search" value="search" />
+        </div>
+      </div>
+    </header>
+
+    <main class="content_box">
+    </main>
+
+    <div class="pagination">
+      <div id="pagination"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>
+      <strong>Developed by:</strong> Karoukin Stanislau.
+      <strong>E-mail:</strong>
+      <a href="mailto:karoukinstanislau@gmail.com">karoukinstanislau@gmail.com</a></strong>
+    </span>
+  </footer>
+
   <script type="text/javascript" src="js/loader.js"></script>
   <script type="text/javascript" src="js/topArtists.js"></script>
   <script type="text/javascript" src="js/artistSearch.js"></script>
   <script type="text/javascript" src="js/albumInfo.js"></script>
   <script type="text/javascript" src="js/artistInfo.js"></script>
-  <script type="text/javascript" src="js/script.js"></script>
+  <script type="text/javascript" src="js/artistTopAlbums.js"></script>
+  <script type="text/javascript" src="js/pagination.js"></script>
+  <script type="text/javascript" src="js/controller.js"></script>
 </body>
 
 </html>
