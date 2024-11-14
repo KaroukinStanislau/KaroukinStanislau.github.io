@@ -6,15 +6,10 @@ function ArtistSearch() {
 ArtistSearch.prototype = Object.create(Loader.prototype);
 ArtistSearch.prototype.constructor = ArtistSearch;
 
-ArtistSearch.prototype.getInfo = function(artistName) {
+ArtistSearch.prototype.getInfo = function(artistName, cb) {
   var queryObject = {
     method: this.method,
     artist: artistName
   };
-  this.doGet(queryObject, this._display);
-};
-
-ArtistSearch.prototype._display = function() {
-  console.log("Artist search");
-  console.log(JSON.parse(this.responseText));
+  this.doGet(queryObject, cb);
 }

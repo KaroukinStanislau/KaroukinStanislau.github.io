@@ -1,3 +1,7 @@
+var div = document.createElement('div');
+div.innerHTML = "Loading, please wait...";
+
+image_box.appendChild(div);
 var topArtists = new TopArtists();
 topArtists.getInfo();
 

@@ -6,14 +6,11 @@ function TopArtists() {
 TopArtists.prototype = Object.create(Loader.prototype);
 TopArtists.prototype.constructor = TopArtists;
 
-TopArtists.prototype.getInfo = function(artistName) {
+TopArtists.prototype.getInfo = function(cb, page) {
   var queryObject = {
-    method: this.method
+    method: this.method,
+    limit: 6 * 5,
+    page: page
   };
-  this.doGet(queryObject, this._display);
-};
-
-TopArtists.prototype._display = function() {
-  console.log("Top artists");
-  console.log(JSON.parse(this.responseText));
+  this.doGet(queryObject, cb);
 }
